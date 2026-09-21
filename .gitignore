@@ -1,0 +1,7 @@
+build/
+install/
+log/
+.vscode/
+*.bag
+*.db3
+__pycache__/

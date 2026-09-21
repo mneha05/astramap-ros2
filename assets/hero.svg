@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07101f"/>
+      <stop offset="1" stop-color="#101d3b"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#37f1d1" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#37f1d1" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="8"/></filter>
+  </defs>
+  <rect width="1200" height="360" rx="24" fill="url(#bg)"/>
+  <g opacity=".16" stroke="#7fa9ff" stroke-width="1">
+    <path d="M0 60H1200M0 120H1200M0 180H1200M0 240H1200M0 300H1200"/>
+    <path d="M60 0V360M120 0V360M180 0V360M240 0V360M300 0V360M360 0V360M420 0V360M480 0V360M540 0V360M600 0V360M660 0V360M720 0V360M780 0V360M840 0V360M900 0V360M960 0V360M1020 0V360M1080 0V360M1140 0V360"/>
+  </g>
+  <circle cx="830" cy="185" r="160" fill="url(#glow)" filter="url(#soft)"/>
+  <g fill="none" stroke="#65f5da" stroke-width="2" opacity=".78">
+    <path d="M708 77L1005 77L1005 289L708 289Z"/>
+    <path d="M760 126L812 126L812 211L760 211Z"/>
+    <path d="M901 201L955 201L955 258L901 258Z"/>
+  </g>
+  <g stroke="#58c9ff" stroke-width="1" opacity=".45">
+    <path d="M851 181L1005 77M851 181L1005 151M851 181L1005 227M851 181L967 289M851 181L708 273M851 181L708 192M851 181L708 97"/>
+  </g>
+  <path d="M851 165L870 201L833 197Z" fill="#37f1d1" stroke="#d6fff8" stroke-width="2"/>
+  <circle cx="930" cy="139" r="10" fill="#ff5576"/>
+  <circle cx="744" cy="248" r="10" fill="#ff5576"/>
+  <g font-family="Inter,Segoe UI,sans-serif">
+    <text x="72" y="145" fill="#f4f8ff" font-size="58" font-weight="700">AstraMap</text>
+    <text x="74" y="190" fill="#79f4db" font-size="23" letter-spacing="3">ROS 2 SENSOR-FUSION SLAM</text>
+    <text x="74" y="238" fill="#a9b9d6" font-size="20">LiDAR mapping · radar motion cues · OpenGL visualization</text>
+    <g font-size="15" font-weight="600">
+      <rect x="74" y="274" width="88" height="32" rx="16" fill="#1e335d"/><text x="96" y="296" fill="#c9d8ff">C++17</text>
+      <rect x="174" y="274" width="88" height="32" rx="16" fill="#1e335d"/><text x="194" y="296" fill="#c9d8ff">ROS 2</text>
+      <rect x="274" y="274" width="102" height="32" rx="16" fill="#1e335d"/><text x="294" y="296" fill="#c9d8ff">OpenGL</text>
+    </g>
+  </g>
+</svg>

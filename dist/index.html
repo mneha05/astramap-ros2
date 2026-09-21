@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07111f" />
+  <meta name="description" content="Interactive LiDAR-radar sensor-fusion SLAM simulation from the AstraMap ROS 2 project." />
+  <title>AstraMap Live — Sensor-Fusion SLAM</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307111f'/%3E%3Cpath d='M32 10 54 50H10Z' fill='none' stroke='%2337f1d1' stroke-width='5'/%3E%3Ccircle cx='32' cy='34' r='7' fill='%23ff5576'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#simulation" aria-label="AstraMap simulation">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>AstraMap</span>
+      <small>LIVE</small>
+    </a>
+    <div class="status" aria-live="polite"><span></span><strong id="run-status">STREAMING</strong><em>ROS 2 GRAPH</em></div>
+    <a class="github" href="https://github.com/mneha05/astramap-ros2" target="_blank" rel="noreferrer">View source <span>↗</span></a>
+  </header>
+
+  <main id="simulation">
+    <aside class="control-panel" aria-label="Simulation controls">
+      <div class="eyebrow">PERCEPTION CONSOLE / 01</div>
+      <h1>Sensor-fusion<br><span>in motion.</span></h1>
+      <p class="intro">Drive a simulated robot through a live occupancy-grid SLAM pipeline. Click the map to place an obstacle and watch LiDAR remap it.</p>
+
+      <div class="button-row">
+        <button id="toggle-run" class="primary" type="button"><span class="pause-icon">Ⅱ</span> Pause</button>
+        <button id="reset" class="secondary" type="button">Reset map</button>
+      </div>
+
+      <div class="controls">
+        <label for="speed">Simulation speed <output id="speed-value">1.0×</output></label>
+        <input id="speed" type="range" min="0.25" max="2" value="1" step="0.25" />
+
+        <div class="switch-row">
+          <span><b>LiDAR rays</b><small>sensor_msgs/LaserScan</small></span>
+          <label class="switch"><input id="lidar-toggle" type="checkbox" checked /><span></span></label>
+        </div>
+        <div class="switch-row">
+          <span><b>Radar tracks</b><small>PointCloud2 + velocity</small></span>
+          <label class="switch"><input id="radar-toggle" type="checkbox" checked /><span></span></label>
+        </div>
+        <div class="switch-row">
+          <span><b>Pose trail</b><small>scan-matched estimate</small></span>
+          <label class="switch"><input id="trail-toggle" type="checkbox" checked /><span></span></label>
+        </div>
+      </div>
+
+      <div class="shortcut"><kbd>SPACE</kbd> pause <kbd>R</kbd> reset</div>
+    </aside>
+
+    <section class="viewport-card" aria-label="Interactive SLAM viewport">
+      <div class="viewport-header">
+        <div><span>MAP FRAME</span><b>20 × 14 m</b></div>
+        <div class="legend"><span class="cyan"></span>LiDAR <span class="red"></span>Radar <span class="white"></span>Robot</div>
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="gl-canvas" aria-label="Live WebGL map. Click to add an obstacle."></canvas>
+        <div class="scanline" aria-hidden="true"></div>
+        <div class="hint" id="hint">+ CLICK TO PLACE OBSTACLE</div>
+        <div class="coords" id="coords">X +0.00&nbsp;&nbsp;Y +0.00&nbsp;&nbsp;θ 0.00°</div>
+      </div>
+      <div class="telemetry">
+        <article><span>SLAM RATE</span><strong id="slam-rate">20.0</strong><small>HZ</small></article>
+        <article><span>MAP CELLS</span><strong id="map-cells">0</strong><small>OCC</small></article>
+        <article><span>LIDAR</span><strong id="lidar-count">180</strong><small>RAYS</small></article>
+        <article><span>RADAR</span><strong id="radar-count">2</strong><small>TRACKS</small></article>
+        <article><span>MATCH SCORE</span><strong id="match-score">0.94</strong><small>CONF</small></article>
+      </div>
+    </section>
+  </main>
+
+  <section class="underlay" aria-label="System architecture">
+    <div>
+      <span class="eyebrow">UNDER THE HOOD / 02</span>
+      <h2>Three nodes. Standard messages.<br>Real mapping logic.</h2>
+    </div>
+    <div class="pipeline">
+      <article><span>01</span><b>SENSOR SIM</b><p>360° ray casting, moving radar targets, noisy wheel odometry.</p></article>
+      <i>→</i>
+      <article><span>02</span><b>FUSION SLAM</b><p>Correlative scan matching and log-odds occupancy updates.</p></article>
+      <i>→</i>
+      <article><span>03</span><b>OPENGL VIEWER</b><p>GLSL shaders, VAOs, and streaming VBOs render every layer.</p></article>
+    </div>
+  </section>
+
+  <footer><span>ASTRAMAP / NEHA MAHESH / 2026</span><span>ROS 2 · C++17 · SLAM · LiDAR · RADAR · OPENGL</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>
